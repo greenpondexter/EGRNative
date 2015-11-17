@@ -4,8 +4,10 @@
  */
 'use strict';
 
+//var Reports = require('./Reports');
 var React = require('react-native');
 var {
+  Navigator,
   AppRegistry,
   StyleSheet,
   Text,
@@ -22,10 +24,13 @@ var LeftPane = React.createClass({
 
   render: function(){
 
+    var ref = this;
+
     var Buttons = this.props.descs.map(function(title){
 
             return (
               <Button
+                navigator = {ref.props.navigator}
                 text = {title}
               />)
      });
@@ -64,16 +69,40 @@ var Button = React.createClass({
   },
 
   render: function(){
-    return <TouchableHighlight onPress={this.buttonClicked} style={styles.button}>
+    return <TouchableHighlight
+                onPress={() => {
+                    this.props.navigator.push({
+                        message: "Swiping to Reports",
+                        component: Reports
+                        //sceneConfig: Navigator.SceneConfigs.FloatFromLeft,
+                    });
+                }}
+                style={styles.button}>
                 <Text style={styles.welcome}>
                   {this.props.text}
                 </Text>
             </TouchableHighlight>;
   }
 
-})
+});
 
-var HelloWorld = React.createClass({
+
+var Reports = React.createClass({
+//
+  render: function() {
+
+    return (
+      <View style={styles.container}>
+          <View style={styles.leftPane}>
+
+          </View>
+      </View>
+    );
+  }
+});
+
+
+var App = React.createClass({
 
   getInitialState: function(){
     return {Login: "UserName",
@@ -100,7 +129,7 @@ var HelloWorld = React.createClass({
     return (
       <View style={styles.container}>
           <View style={styles.leftPane}>
-              <LeftPane
+              <LeftPane navigator = {this.props.navigator}
                 descs= {["Home", "Reports", "Dashboards"]}
               />
           </View>
@@ -109,7 +138,7 @@ var HelloWorld = React.createClass({
                 <InputField
                   onUserInput={this.handleUserInput}
                   text={this.state.Login}
-                  box = 'Login'
+                  box='Login'
                 />
                 <InputField
                   onUserInput={this.handleUserInput}
@@ -121,6 +150,59 @@ var HelloWorld = React.createClass({
       </View>
     );
   }
+});
+
+
+var HelloWorld = React.createClass({
+
+    // renderScene: function(route, nav){
+    //   switch(route.id) {
+    //     case 'Reports':
+    //       return <Reports navigator={nav}>;
+    //     default:
+    //       return (
+    //         <HelloWorld
+    //           message={route.message}
+    //           navigator={nav}
+    //           />
+    //       )
+    //   }
+    // },
+
+    render: function(){
+      return (
+          <Navigator
+            initialRoute = {{message: 'Home Page', component: App}}
+            configureScene={() => {
+                return Navigator.SceneConfigs.FloatFromRight;
+              }}
+            renderScene = {(route, navigator) => {
+                console.log(route, navigator)
+
+                if (route.component){
+                  return React.createElement(route.component, {navigator})
+                }
+              }
+            }
+
+          />
+        // <Navigator
+        //   initialRoute = {{message: 'Home Page'}}
+        //   renderScene={this.renderScene}
+        //   configureScene={(route) => {
+        //     if(route.sceneConfig) {
+        //       return route.sceneConfig
+        //     }
+        //     else{
+        //       return (Navigator.SceneConfigs.FloatFromBottom);
+        //     }
+        //     }
+        //   }
+        // />
+
+      )
+    }
+
 });
 
 var styles = StyleSheet.create({
@@ -160,3 +242,4 @@ var styles = StyleSheet.create({
 });
 
 AppRegistry.registerComponent('HelloWorld', () => HelloWorld);
+module.exports = HelloWorld;
