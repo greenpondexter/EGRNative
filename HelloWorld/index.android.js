@@ -74,7 +74,7 @@ var Button = React.createClass({
                     this.props.navigator.push({
                         message: "Swiping to Reports",
                         component: Reports
-                        //sceneConfig: Navigator.SceneConfigs.FloatFromLeft,
+
                     });
                 }}
                 style={styles.button}>
@@ -86,6 +86,29 @@ var Button = React.createClass({
 
 });
 
+var ReportsButton = React.createClass({
+
+  buttonClicked: function() {
+    console.log('button clicked');
+  },
+
+  render: function(){
+    return <TouchableHighlight
+                onPress={() => {
+                    this.props.navigator.push({
+                        message: "Swiping Back To Reports",
+                        component: App 
+
+                    });
+                }}
+                style={styles.button}>
+                <Text style={styles.welcome}>
+                  {"Back to Home"}
+                </Text>
+            </TouchableHighlight>;
+  }
+
+});
 
 var Reports = React.createClass({
 //
@@ -94,6 +117,13 @@ var Reports = React.createClass({
     return (
       <View style={styles.container}>
           <View style={styles.leftPane}>
+            <Text>
+                Hello Worlds
+            </Text>
+            <ReportsButton navigator={this.props.navigator}>
+
+            </ReportsButton>
+
 
           </View>
       </View>
