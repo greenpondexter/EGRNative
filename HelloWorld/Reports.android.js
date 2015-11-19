@@ -30,10 +30,10 @@ var ReportsButton = React.createClass({
   render: function(){
     return <TouchableHighlight
                 onPress={() => {
-                    this.props.navigator.pop();
+                    this.props.navigator.push({name:"Home"});
                 }}
                 style={styles.button}>
-                <Text style={styles.welcome}>
+                <Text style={styles.button}>
                   {"Back to Home"}
                 </Text>
             </TouchableHighlight>;
@@ -49,7 +49,6 @@ var Reports = React.createClass({
       <View style={styles.container}>
           <View style={styles.leftPane}>
             <Text>
-                Hello Worlds
             </Text>
             <ReportsButton navigator={this.props.navigator}>
 
@@ -73,7 +72,8 @@ var styles = StyleSheet.create({
 
   button: {
     textAlign: 'center',
-    backgroundColor: '#000099',
+    justifyContent: 'center',
+    backgroundColor: '#ce0000',
     marginBottom: 7,
     height: 40,
     borderRadius: 2
