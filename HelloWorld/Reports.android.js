@@ -3,8 +3,9 @@
  * https://github.com/facebook/react-native
  */
 'use strict';
-
+//var App = require('./App')
 var React = require('react-native');
+//var App = require('./HelloWorld');
 var {
   Navigator,
   AppRegistry,
@@ -19,21 +20,30 @@ var {
 } = React;
 
 
-var Button = React.createClass({
+
+var ReportsButton = React.createClass({
 
   buttonClicked: function() {
     console.log('button clicked');
   },
 
   render: function(){
-    return <TouchableHighlight onPress={this.buttonClicked} style={styles.button}>
+    return <TouchableHighlight
+                onPress={() => {
+                    this.props.navigator.push({
+                        message: "Swiping Back To Reports",
+                        component: App
+
+                    });
+                }}
+                style={styles.button}>
                 <Text style={styles.welcome}>
-                  {this.props.text}
+                  {"Back to Home"}
                 </Text>
             </TouchableHighlight>;
   }
 
-})
+});
 
 var Reports = React.createClass({
 
@@ -42,9 +52,14 @@ var Reports = React.createClass({
     return (
       <View style={styles.container}>
           <View style={styles.leftPane}>
-              <Button
-                text= "Reports Page"
-              />
+            <Text>
+                Hello Worlds
+            </Text>
+            <ReportsButton navigator={this.props.navigator}>
+
+            </ReportsButton>
+
+
           </View>
       </View>
     );
@@ -69,5 +84,5 @@ var styles = StyleSheet.create({
   }
 });
 
-// AppRegistry.registerComponent('HelloWorld', () => HelloWorld);
-module.exports = Reports; 
+
+module.exports = Reports;

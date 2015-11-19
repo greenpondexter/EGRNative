@@ -4,7 +4,7 @@
  */
 'use strict';
 
-//var Reports = require('./Reports');
+
 var React = require('react-native');
 var {
   Navigator,
@@ -16,9 +16,11 @@ var {
   ScrollView,
   PlatForm,
   TouchableHighlight,
-  TouchableNativeFeedback
+  TouchableNativeFeedback,
+
 } = React;
 
+var Reports = require('./Reports');
 
 var LeftPane = React.createClass({
 
@@ -86,52 +88,6 @@ var Button = React.createClass({
 
 });
 
-var ReportsButton = React.createClass({
-
-  buttonClicked: function() {
-    console.log('button clicked');
-  },
-
-  render: function(){
-    return <TouchableHighlight
-                onPress={() => {
-                    this.props.navigator.push({
-                        message: "Swiping Back To Reports",
-                        component: App 
-
-                    });
-                }}
-                style={styles.button}>
-                <Text style={styles.welcome}>
-                  {"Back to Home"}
-                </Text>
-            </TouchableHighlight>;
-  }
-
-});
-
-var Reports = React.createClass({
-//
-  render: function() {
-
-    return (
-      <View style={styles.container}>
-          <View style={styles.leftPane}>
-            <Text>
-                Hello Worlds
-            </Text>
-            <ReportsButton navigator={this.props.navigator}>
-
-            </ReportsButton>
-
-
-          </View>
-      </View>
-    );
-  }
-});
-
-
 var App = React.createClass({
 
   getInitialState: function(){
@@ -185,20 +141,6 @@ var App = React.createClass({
 
 var HelloWorld = React.createClass({
 
-    // renderScene: function(route, nav){
-    //   switch(route.id) {
-    //     case 'Reports':
-    //       return <Reports navigator={nav}>;
-    //     default:
-    //       return (
-    //         <HelloWorld
-    //           message={route.message}
-    //           navigator={nav}
-    //           />
-    //       )
-    //   }
-    // },
-
     render: function(){
       return (
           <Navigator
@@ -216,19 +158,6 @@ var HelloWorld = React.createClass({
             }
 
           />
-        // <Navigator
-        //   initialRoute = {{message: 'Home Page'}}
-        //   renderScene={this.renderScene}
-        //   configureScene={(route) => {
-        //     if(route.sceneConfig) {
-        //       return route.sceneConfig
-        //     }
-        //     else{
-        //       return (Navigator.SceneConfigs.FloatFromBottom);
-        //     }
-        //     }
-        //   }
-        // />
 
       )
     }
@@ -271,5 +200,7 @@ var styles = StyleSheet.create({
 
 });
 
+
 AppRegistry.registerComponent('HelloWorld', () => HelloWorld);
+//module.exports = HelloWorld;
 module.exports = HelloWorld;
