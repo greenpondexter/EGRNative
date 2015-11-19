@@ -47,21 +47,6 @@ var LeftPane = React.createClass({
 })
 
 
-var InputField = React.createClass({
-
-
-  handleChange: function(text){
-     this.props.onUserInput(this.props.box, text)
-  },
-
-  render: function(){
-    return <TextInput
-                style={styles.buttons}
-                onChangeText={(text) => this.handleChange(text)}
-                value={this.props.text}
-            />
-  }
-})
 
 
 var Button = React.createClass({
@@ -89,11 +74,7 @@ var Button = React.createClass({
 
 var Home= React.createClass({
 
-  getInitialState: function(){
-    return {Login: "UserName",
-            Pass: "Password",
-          }
-  },
+
 
   generateTextBox: function(text, specificStyle){
     return <Text style={specificStyle}>
@@ -101,12 +82,6 @@ var Home= React.createClass({
             </Text>
   },
 
-  handleUserInput: function(whichProp, val) {
-
-    this.state[whichProp] = val;
-    this.setState(this.state);
-
-    },
 
   render: function() {
 
@@ -118,56 +93,10 @@ var Home= React.createClass({
                 descs= {["Home", "Reports", "Dashboards"]}
               />
           </View>
-
-          <View style={styles.rightPane}>
-                <InputField
-                  onUserInput={this.handleUserInput}
-                  text={this.state.Login}
-                  box='Login'
-                />
-                <InputField
-                  onUserInput={this.handleUserInput}
-                  text={this.state.Pass}
-                  box = 'Pass'
-                />
-
-          </View>
       </View>
     );
   }
 });
-
-// var RouteMapper = function(route, navigator){
-//
-//   if(route.name === "Home Page"){
-//     return (<App navigator={navigator}/>)
-//   }
-//   else if (route.name === "Reports"){
-//     return (
-//       <Reports navigator={navigator}/>
-//     )
-//
-//   }
-// };
-
-
-
-
-// var Home = React.createClass({
-//
-//     render: function(){
-//       return (
-//           <Navigator
-//             initialRoute = {{name: 'Home Page'}}
-//             configureScene={() =>
-//                Navigator.SceneConfigs.FloatFromRight
-//             }
-//             renderScene = {RouteMapper}
-//
-//           />)
-//         }
-//       }
-//     )
 
 
 
@@ -188,6 +117,7 @@ var styles = StyleSheet.create({
     textAlign: 'center',
     backgroundColor: '#990000',
     marginBottom: 7,
+    width: 100,
     height: 40,
     borderRadius: 2
   },
