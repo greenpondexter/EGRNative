@@ -74,8 +74,7 @@ var Button = React.createClass({
     return <TouchableHighlight
                 onPress={() => {
                     this.props.navigator.push({
-                        message: "Swiping to Reports",
-                        component: Reports
+                        name: 'Reports'
 
                     });
                 }}
@@ -138,31 +137,39 @@ var App = React.createClass({
   }
 });
 
+var RouteMapper = function(route, navigator){
+
+  if(route.name === "Home Page"){
+    return (<App navigator={navigator}/>)
+  }
+  else if (route.name === "Reports"){
+    return (
+      <Reports navigator={navigator}/>
+    )
+
+  }
+};
+
+
+
 
 var HelloWorld = React.createClass({
 
     render: function(){
       return (
           <Navigator
-            initialRoute = {{message: 'Home Page', component: App}}
-            configureScene={() => {
-                return Navigator.SceneConfigs.FloatFromRight;
-              }}
-            renderScene = {(route, navigator) => {
-                console.log(route, navigator)
-
-                if (route.component){
-                  return React.createElement(route.component, {navigator})
-                }
-              }
+            initialRoute = {{name: 'Home Page'}}
+            configureScene={() =>
+               Navigator.SceneConfigs.FloatFromRight
             }
+            renderScene = {RouteMapper}
 
-          />
+          />)
+        }
+      }
+    )
 
-      )
-    }
 
-});
 
 var styles = StyleSheet.create({
   container: {

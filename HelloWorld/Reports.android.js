@@ -30,11 +30,7 @@ var ReportsButton = React.createClass({
   render: function(){
     return <TouchableHighlight
                 onPress={() => {
-                    this.props.navigator.push({
-                        message: "Swiping Back To Reports",
-                        component: App
-
-                    });
+                    this.props.navigator.pop();
                 }}
                 style={styles.button}>
                 <Text style={styles.welcome}>
