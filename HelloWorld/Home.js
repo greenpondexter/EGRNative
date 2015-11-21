@@ -6,6 +6,8 @@
 
 
 var React = require('react-native');
+var ScrollableTabView = require('react-native-scrollable-tab-view');
+
 var {
   Navigator,
   AppRegistry,
@@ -17,63 +19,71 @@ var {
   PlatForm,
   TouchableHighlight,
   TouchableNativeFeedback,
+  ToolbarAndroid
 
 } = React;
 
 var Reports = require('./Reports');
 
-var LeftPane = React.createClass({
-
-  render: function(){
-
-    var ref = this;
-
-    var Buttons = this.props.descs.map(function(title){
-
-            return (
-              <Button
-                navigator = {ref.props.navigator}
-                text = {title}
-              />)
-     });
-
-     return (
-         <View>
-          {Buttons}
-         </View>
-     )
-    }
-
-})
-
-
+// var LeftPane = React.createClass({
+//
+//   render: function(){
+//
+//     var ref = this;
+//
+//     var Buttons = this.props.descs.map(function(title){
+//
+//             return (
+//               <Button
+//                 navigator = {ref.props.navigator}
+//                 text = {title}
+//               />)
+//      });
+//
+//      return (
+//          <View>
+//           {Buttons}
+//          </View>
+//      )
+//     }
+//
+// })
 
 
-var Button = React.createClass({
 
-  buttonClicked: function() {
-    console.log('button clicked');
-  },
-
-  render: function(){
-    return <TouchableHighlight
-                onPress={() => {
-                    this.props.navigator.push({
-                        name: 'Reports'
-
-                    });
-                }}
-                style={styles.button}>
-                <Text style={styles.welcome}>
-                  {this.props.text}
-                </Text>
-            </TouchableHighlight>;
-  }
-
-});
+//
+// var Button = React.createClass({
+//
+//   buttonClicked: function() {
+//     console.log('button clicked');
+//   },
+//
+//   render: function(){
+//     return <TouchableHighlight
+//                 onPress={() => {
+//                     this.props.navigator.push({
+//                         name: 'Reports'
+//
+//                     });
+//                 }}
+//                 style={styles.button}>
+//                 <Text style={styles.welcome}>
+//                   {this.props.text}
+//                 </Text>
+//             </TouchableHighlight>;
+//   }
+//
+// });
 
 var Home= React.createClass({
 
+
+  toolbarActions : [
+    {title: 'Home', show: 'always'},
+    {title: 'Dashboards', show: 'always'},
+    {title: 'Reports', show: 'always'}
+
+  ],
 
 
   generateTextBox: function(text, specificStyle){
@@ -87,13 +97,19 @@ var Home= React.createClass({
 
 
     return (
-      <View style={styles.container}>
-          <View style={styles.leftPane}>
-              <LeftPane navigator = {this.props.navigator}
-                descs= {["Home", "Reports", "Dashboards"]}
-              />
-          </View>
-      </View>
+
+        <View style={styles.container}>
+            <ToolbarAndroid style = {styles.toolbar}
+              logo={require('./logo_og1.png')}
+
+              actions={this.toolbarActions}
+              ></ToolbarAndroid>
+            <View style={styles.leftPane}>
+                
+            </View>
+        </View>
+
+
     );
   }
 });
@@ -102,7 +118,7 @@ var Home= React.createClass({
 
 var styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     // justifyContent: 'center',
     // alignItems: 'center',
     backgroundColor: '#F5FCFF',
@@ -110,7 +126,13 @@ var styles = StyleSheet.create({
   },
 
   leftPane: {
-    flex: 2
+    flex: 10
+  },
+
+  toolbar:{
+    flex: 1,
+    backgroundColor: '#c0392b',
+
   },
 
   button: {
