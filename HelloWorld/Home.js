@@ -7,6 +7,7 @@
 
 var React = require('react-native');
 var ScrollableTabView = require('react-native-scrollable-tab-view');
+var Toolbars = require('./Toolbars')
 
 var {
   Navigator,
@@ -19,61 +20,12 @@ var {
   PlatForm,
   TouchableHighlight,
   TouchableNativeFeedback,
-  ToolbarAndroid
+
 
 } = React;
 
 var Reports = require('./Reports');
 
-// var LeftPane = React.createClass({
-//
-//   render: function(){
-//
-//     var ref = this;
-//
-//     var Buttons = this.props.descs.map(function(title){
-//
-//             return (
-//               <Button
-//                 navigator = {ref.props.navigator}
-//                 text = {title}
-//               />)
-//      });
-//
-//      return (
-//          <View>
-//           {Buttons}
-//          </View>
-//      )
-//     }
-//
-// })
-
-
-
-//
-// var Button = React.createClass({
-//
-//   buttonClicked: function() {
-//     console.log('button clicked');
-//   },
-//
-//   render: function(){
-//     return <TouchableHighlight
-//                 onPress={() => {
-//                     this.props.navigator.push({
-//                         name: 'Reports'
-//
-//                     });
-//                 }}
-//                 style={styles.button}>
-//                 <Text style={styles.welcome}>
-//                   {this.props.text}
-//                 </Text>
-//             </TouchableHighlight>;
-//   }
-//
-// });
 
 var Home= React.createClass({
 
@@ -99,14 +51,9 @@ var Home= React.createClass({
     return (
 
         <View style={styles.container}>
-            <ToolbarAndroid style = {styles.toolbar}
-              logo={require('./logo_og1.png')}
-
-              actions={this.toolbarActions}
-              ></ToolbarAndroid>
-            <View style={styles.leftPane}>
-                
-            </View>
+          <Toolbars style={styles.toolbar}></Toolbars>
+          <View style={styles.main}>
+          </View>
         </View>
 
 
@@ -125,7 +72,7 @@ var styles = StyleSheet.create({
     flex: 1
   },
 
-  leftPane: {
+  main: {
     flex: 10
   },
 
