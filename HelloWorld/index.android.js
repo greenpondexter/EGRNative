@@ -7,7 +7,8 @@
 
 var React = require('react-native');
 var Home = require('./Home');
-var Reports = require('./Reports')
+var Reports = require('./Reports');
+var Dashboards = require('./Dashboards');
 
 var {
   Navigator,

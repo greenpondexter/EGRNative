@@ -1,14 +1,8 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
 'use strict';
 
 
 var React = require('react-native');
-var ScrollableTabView = require('react-native-scrollable-tab-view');
 var Toolbars = require('./Toolbars')
-
 var {
   Navigator,
   AppRegistry,
@@ -20,48 +14,39 @@ var {
   PlatForm,
   TouchableHighlight,
   TouchableNativeFeedback,
-
+  ToolbarAndroid
 
 } = React;
 
-var Reports = require('./Reports');
 
 
-var Home= React.createClass({
 
-
-  toolbarActions : [
-    {title: 'Home', show: 'always'},
-    {title: 'Dashboards', show: 'always'},
-    {title: 'Reports', show: 'always'}
-
-  ],
-
-
-  generateTextBox: function(text, specificStyle){
-    return <Text style={specificStyle}>
-              {text}
-            </Text>
-  },
+var Dashboards = React.createClass({
 
 
   render: function() {
 
+    var ref = this;
 
     return (
-
-        <View style={styles.container}>
-          <Toolbars navigator={this.props.navigator} style={styles.toolbar}></Toolbars>
+      <View style={styles.container}>
+        <Toolbars style={styles.toolbar}></Toolbars>
           <View style={styles.main}>
+            <Text>{"Dashboards"}</Text>
           </View>
-        </View>
-
-
+      </View>
     );
   }
 });
 
+var styles = StyleSheet.create({
 
+  toolbars:{
+    backgroundColor: '#c0392b',
+    flex: 1
+  }
+
+});
 
 var styles = StyleSheet.create({
   container: {
@@ -107,6 +92,4 @@ var styles = StyleSheet.create({
 });
 
 
-// AppRegistry.registerComponent('HelloWorld', () => HelloWorld);
-// //module.exports = HelloWorld;
- module.exports = Home;
+module.exports = Dashboards;

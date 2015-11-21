@@ -26,9 +26,18 @@ var Toolbars = React.createClass({
 
   onActionSelected: function(position) {
 
-    this.props.navigator.push({
-                          name: 'Home Page'
-                      });
+    if(position === 0){
+      this.props.navigator.push({
+        name: 'Home Page'
+      });
+    }
+    else if(position === 1){
+      this.props.navigator.push({
+        name: 'Dashboards'
+      });
+
+
+    }
 
   },
 
