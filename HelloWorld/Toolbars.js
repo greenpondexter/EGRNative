@@ -23,20 +23,33 @@ var {
 
 var Toolbars = React.createClass({
 
+
+  onActionSelected: function(position) {
+
+    this.props.navigator.push({
+                          name: 'Home Page'
+                      });
+
+  },
+
   toolbarActions : [
-    {title: 'Home', show: 'always'},
+    {title: "hOME", show: 'always'},
     {title: 'Dashboards', show: 'always'},
     {title: 'Reports', show: 'always'}
 
   ],
 
 
+
   render: function() {
+
+    var ref = this;
 
     return (
       <ToolbarAndroid style={styles.toolbars}
-              logo={require('./logo_og1.png')}
-              actions={this.toolbarActions}
+        logo={require('./logo_og1.png')}
+        actions={this.toolbarActions}
+        onActionSelected={this.onActionSelected.bind(this)}
       ></ToolbarAndroid>
     );
   }
@@ -45,7 +58,6 @@ var Toolbars = React.createClass({
 var styles = StyleSheet.create({
 
   toolbars:{
-
     backgroundColor: '#c0392b',
     flex: 1
   }

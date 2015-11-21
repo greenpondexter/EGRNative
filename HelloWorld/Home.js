@@ -51,7 +51,7 @@ var Home= React.createClass({
     return (
 
         <View style={styles.container}>
-          <Toolbars style={styles.toolbar}></Toolbars>
+          <Toolbars bitch={"bitch"} navigator={this.props.navigator} style={styles.toolbar}></Toolbars>
           <View style={styles.main}>
           </View>
         </View>
