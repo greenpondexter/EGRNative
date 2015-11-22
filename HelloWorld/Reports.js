@@ -5,7 +5,7 @@
 'use strict';
 //var App = require('./App')
 var React = require('react-native');
-//var App = require('./HelloWorld');
+var Toolbars = require('./Toolbars')
 var {
   Navigator,
   AppRegistry,
@@ -20,45 +20,20 @@ var {
 } = React;
 
 
-
-var ReportsButton = React.createClass({
-
-  buttonClicked: function() {
-    console.log('button clicked');
-  },
-
-  render: function(){
-    return <TouchableHighlight
-                onPress={() => {
-                    this.props.navigator.push({name:"Home"});
-                }}
-                style={styles.button}>
-                <Text style={styles.button}>
-                  {"Back to Home"}
-                </Text>
-            </TouchableHighlight>;
-  }
-
-});
-
 var Reports = React.createClass({
 
   render: function() {
 
     return (
       <View style={styles.container}>
-          <View style={styles.leftPane}>
-            <Text>
-            </Text>
-            <ReportsButton navigator={this.props.navigator}>
-
-            </ReportsButton>
-
+        <Toolbars style={styles.toolbar}></Toolbars>
+          <View style={styles.main}>
 
           </View>
       </View>
     );
   }
+  
 });
 
 var styles = StyleSheet.create({

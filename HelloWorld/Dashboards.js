@@ -26,13 +26,11 @@ var Dashboards = React.createClass({
 
   render: function() {
 
-    var ref = this;
-
     return (
       <View style={styles.container}>
         <Toolbars style={styles.toolbar}></Toolbars>
           <View style={styles.main}>
-            <Text>{"Dashboards"}</Text>
+
           </View>
       </View>
     );
