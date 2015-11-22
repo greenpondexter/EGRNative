@@ -56,7 +56,7 @@ var Toolbars = React.createClass({
 
     return (
       <ToolbarAndroid style={styles.toolbars}
-        logo={require('./logo_og1.png')}
+        logo={require('../images/logo_og1.png')}
         actions={this.toolbarActions}
         onActionSelected={this.onActionSelected.bind(this)}
       ></ToolbarAndroid>
