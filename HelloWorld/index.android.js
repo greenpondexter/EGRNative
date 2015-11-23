@@ -9,6 +9,9 @@ var React = require('react-native');
 var Home = require('./components/Home');
 var Reports = require('./components/Reports');
 var Dashboards = require('./components/Dashboards');
+var EGRStore = require('./stores/EGRStore');
+var EGRActions = require('./actions/EGRActions');
+
 
 var {
   Navigator,
@@ -44,23 +47,31 @@ var InputField = React.createClass({
 var App = React.createClass({
 
   getInitialState: function(){
-    return {Login: "UserName",
-            Pass: "Password",
-          }
-  },
-
-  generateTextBox: function(text, specificStyle){
-    return <Text style={specificStyle}>
-              {text}
-            </Text>
+  return EGRStore.getState();
   },
 
   handleUserInput: function(whichProp, val) {
 
-    this.state[whichProp] = val;
-    this.setState(this.state);
-
+        if(whichProp === "Login"){
+          EGRActions.updateLogin({"Login":val})
+        }
+        else{
+          EGRActions.updateLogin({"Pass":val})
+        }
     },
+
+  onChange(state) {
+    this.setState(state);
+  },
+
+
+  componentDidMount() {
+    EGRStore.listen(this.onChange);
+  },
+
+  componentWillUnmount() {
+    EGRStore.unlisten(this.onChange);
+  },
 
   render: function() {
 
@@ -71,12 +82,12 @@ var App = React.createClass({
           <View style={styles.rightPane}>
                 <InputField
                   onUserInput={this.handleUserInput}
-                  text={this.state.Login}
+                  text={this.state.loginInfo.login}
                   box='Login'
                 />
                 <InputField
                   onUserInput={this.handleUserInput}
-                  text={this.state.Pass}
+                  text={this.state.loginInfo.pass}
                   box = 'Pass'
                 />
               <View style={styles.submitButtonContainer}>
@@ -165,6 +176,7 @@ var styles = StyleSheet.create({
     flex:2,
     textAlign: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: '#ce0000',
     width:60,
     marginBottom: 7,
@@ -175,14 +187,10 @@ var styles = StyleSheet.create({
     flex: 3
   },
   welcome: {
-    // fontSize: 20,
-    // textAlign: 'center',
-    // margin: 10,
+
   },
   instructions: {
-    // textAlign: 'center',
-    // color: '#333333',
-    // marginBottom: 5,
+
   },
 
 });

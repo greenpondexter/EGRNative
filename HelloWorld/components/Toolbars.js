@@ -42,7 +42,7 @@ var Toolbars = React.createClass({
   },
 
   toolbarActions : [
-    {title: "hOME", show: 'always'},
+    {title: "Home", show: 'always'},
     {title: 'Dashboards', show: 'always'},
     {title: 'Reports', show: 'always'}
 
