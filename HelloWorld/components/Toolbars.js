@@ -35,8 +35,11 @@ var Toolbars = React.createClass({
       this.props.navigator.push({
         name: 'Dashboards'
       });
-
-
+    }
+    else{
+      this.props.navigator.push({
+        name: 'Reports'
+      })
     }
 
   },

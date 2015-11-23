@@ -122,14 +122,10 @@ var RouteMapper = function(route, navigator){
     return (<Home navigator={navigator}/>)
   }
   else if (route.name === "Reports"){
-    return (
-      <Reports navigator={navigator}/>
-    )
+    return (<Reports navigator={navigator}/>)
   }
   else if (route.name === "Dashboards"){
-    return (
-      <Dashboards navigator={navigator}/>
-    )
+    return (<Dashboards navigator={navigator}/>)
   }
 };
 

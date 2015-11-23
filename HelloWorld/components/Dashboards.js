@@ -2,7 +2,7 @@
 
 
 var React = require('react-native');
-var Toolbars = require('./Toolbars')
+var Toolbars = require('./Toolbars');
 var {
   Navigator,
   AppRegistry,
@@ -28,23 +28,15 @@ var Dashboards = React.createClass({
 
     return (
       <View style={styles.container}>
-        <Toolbars style={styles.toolbar}></Toolbars>
+        <Toolbars navigator={this.props.navigator} style={styles.toolbar}></Toolbars>
           <View style={styles.main}>
-
           </View>
       </View>
     );
   }
 });
 
-var styles = StyleSheet.create({
 
-  toolbars:{
-    backgroundColor: '#c0392b',
-    flex: 1
-  }
-
-});
 
 var styles = StyleSheet.create({
   container: {
@@ -54,7 +46,6 @@ var styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
     flex: 1
   },
-
   main: {
     flex: 10
   },
@@ -77,14 +68,10 @@ var styles = StyleSheet.create({
     flex: 3
   },
   welcome: {
-    // fontSize: 20,
-    // textAlign: 'center',
-    // margin: 10,
+
   },
   instructions: {
-    // textAlign: 'center',
-    // color: '#333333',
-    // marginBottom: 5,
+
   },
 
 });

@@ -26,33 +26,50 @@ var Reports = React.createClass({
 
     return (
       <View style={styles.container}>
-        <Toolbars style={styles.toolbar}></Toolbars>
+        <Toolbars navigator={this.props.navigator}  style={styles.toolbar}></Toolbars>
           <View style={styles.main}>
-
           </View>
       </View>
     );
   }
-  
+
 });
 
 var styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     // justifyContent: 'center',
     // alignItems: 'center',
     backgroundColor: '#F5FCFF',
     flex: 1
   },
+  main: {
+    flex: 10
+  },
+
+  toolbar:{
+    flex: 1,
+    backgroundColor: '#c0392b',
+
+  },
 
   button: {
     textAlign: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#ce0000',
+    backgroundColor: '#990000',
     marginBottom: 7,
+    width: 100,
     height: 40,
     borderRadius: 2
-  }
+  },
+  rightPane: {
+    flex: 3
+  },
+  welcome: {
+
+  },
+  instructions: {
+
+  },
 });
 
 
